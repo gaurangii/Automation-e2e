@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "ignoreDeprecations": "6.0",
+    "lib": ["esnext", "dom"],
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["pages/*"],
+      "@fixtures/*": ["fixtures/*"]
+    }
+  }
+}
