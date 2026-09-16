@@ -3,7 +3,7 @@
     "ignoreDeprecations": "6.0",
     "lib": ["esnext", "dom"],
     "types": ["node"],
-    "baseUrl": ".",
+    "baseUrl": "https://botpenguin.com/",
     "paths": {
       "@pages/*": ["pages/*"],
       "@fixtures/*": ["fixtures/*"]
