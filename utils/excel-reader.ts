@@ -9,7 +9,7 @@ export function readExcelSheet(
   sheetName: string = 'Login',
   filePath: string = defaultExcelPath
 ): ExcelRow[] {
-  const workbook = XLSX.readFile('/Users/gaurangisharma/Documents/Testing/data/Customer-Panel.xlsx');
+  const workbook = XLSX.readFile(filePath);
   const worksheet = workbook.Sheets[sheetName];
 
   if (!worksheet) {
