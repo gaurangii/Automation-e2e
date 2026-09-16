@@ -30,3 +30,13 @@ export function getLoginData(): ExcelRow {
 
   return rows[0];
 }
+
+export function getLastLoginData(): ExcelRow {
+  const rows = readExcelSheet('Login');
+
+  if (rows.length === 0) {
+    throw new Error('No data found in login sheet');
+  }
+
+  return rows[rows.length - 1];
+}
