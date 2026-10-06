@@ -11,6 +11,7 @@ export class LoginPage {
   readonly signUpPhoneInput: Locator;
   readonly signUpPasswordInput: Locator;
   readonly forgotPasswordLink: Locator;
+  readonly incorrectPasswordChip: Locator;
 
 
   constructor(page: Page) {
@@ -24,6 +25,7 @@ export class LoginPage {
     this.signUpPhoneInput = page.locator('#au-inp-su-phn').first();
     this.signUpPasswordInput = page.locator('#bp-auth-input-signup-password').first();
     this.forgotPasswordLink = page.getByText(/forgot.?password/i).first();
+    this.incorrectPasswordChip = page.locator('p', { hasText: 'incorrect' });
   }
 
   async goto(): Promise<void> {
@@ -102,6 +104,10 @@ export class LoginPage {
   async assertLoginPageVisible(): Promise<void> {
     await expect(this.emailInput).toBeVisible({ timeout: 30000 });
     await expect(this.passwordInput).toBeVisible({ timeout: 30000 });
+  }
+
+  async assertIncorrectPasswordChipVisible(): Promise<void> {
+    await expect(this.incorrectPasswordChip).toBeVisible({ timeout: 30000 });
   }
 
   async assertForgetPasswordLinkVisible(): Promise<void> {

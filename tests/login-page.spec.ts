@@ -31,8 +31,7 @@ test.describe('Authentication module script', () => {
     await loginPage.enterPassword(String(invalidLoginData.password));
     await loginPage.waitForSpinnerToClear();
     await loginPage.clickLoginButton();
-
-    // assertion for invalid login goes here
+    await loginPage.assertIncorrectPasswordChipVisible();
 });
 
 
