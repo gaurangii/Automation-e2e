@@ -40,5 +40,6 @@ test.describe('Authentication module script', () => {
         await loginPage.enterPassword(String(loginData.password));
         await loginPage.waitForSpinnerToClear();
         await loginPage.clickLoginButton();
+        await loginPage.assertHomepageVisible();
     })
 })

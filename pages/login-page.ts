@@ -78,7 +78,7 @@ export class LoginPage {
 
   async clickLoginButton(): Promise<void> {
     await this.loginButton.click();
-    await this.assertHomepageVisible();
+    // await this.assertHomepageVisible();
   }
 
   async clickSignUpLink(): Promise<void> {
