@@ -11,7 +11,7 @@ export class HomePage {
     readonly aiAgentTable: Locator;
     readonly editChatbotButton: Locator;
     readonly deleteChatbotButton: Locator;
-    readonly ellisisChatbotTable: Locator;
+    readonly ellipsisChatbotTable: Locator;
     readonly copyChatbotID: Locator;
     readonly copyBotIDSuccessToast: Locator;
     readonly editAIAgentButton: Locator;
