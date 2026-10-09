@@ -39,7 +39,31 @@ export class HomePage {
             .getByRole('row')
             .filter({ has: page.getByRole('link', { name: 'Bot 24', exact: true }) })
             .locator('img[src*="delete"]');
-        
+        this.ellipsisChatbotTable = page
+            .getByRole('row')
+            .filter({ has: page.getByRole('link', { name: 'Bot 24', exact: true }) })
+            .locator('img[src*="more"] ');
+        this.copyChatbotID = page.getByText(/Copy.?Bot.?ID/i).first();
+        this.copyBotIDSuccessToast = page.getByText(/ID.?Copied.?successfully/i).first();
+        this.editAIAgentButton = page
+            .getByRole('row')
+            .filter({ has: page.getByRole('link', { name: 'Voice Bot 2', exact: true }) })
+            .locator('img[src*="edit"]');
+        this.deleteAIAgentButton = page
+            .getByRole('row')
+            .filter({ has: page.getByRole('link', { name: 'Voice Bot 2', exact: true }) })
+            .locator('img[src*="delete"]');
+        this.ellipsisAIAgentTable = page
+            .getByRole('row')
+            .filter({ has: page.getByRole('link', { name: 'Voice Bot 2', exact: true }) })
+            .locator('img[src*="more"] ');
+        this.copyVoicebotID = page.getByText(/Copy.?Voice.?Bot.?ID/i).first();
+        this.copyAIIDSuccessToast = page.getByText(/ID.?Copied.?successfully/i).first();
+        this.notificationButton = page.locator('span', { hasText: 'notifications' });
+        this.myProfileButton = page.locator('img[routerlink="/settings/details"]');
+        this.homePageNavButton = page.locator('#bp-sb-itm-home');
+
+
     }
 
     async goto(): Promise<void> {
@@ -47,11 +71,11 @@ export class HomePage {
             '/home',
             '/account',
             '/dashboard'
-        ] ;
+        ];
 
-        
 
-        
+
+
     }
 
 
