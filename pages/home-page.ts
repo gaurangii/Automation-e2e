@@ -70,13 +70,16 @@ export class HomePage {
         const targetRoute = [
             '/home',
             '/account',
-            '/dashboard'
+            '/dashboard',
+            '/home-v2'
         ];
 
 
 
 
     }
+
+    
 
 
 
