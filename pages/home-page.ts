@@ -107,7 +107,7 @@ export class HomePage {
 
     async verifyChatbotTablePresent(): Promise<boolean> {
         return this.chatbotTable.isVisible().catch(() => false);
-        if ()
+        if (this.chatbotTable.isVisible)
     }
 
 
