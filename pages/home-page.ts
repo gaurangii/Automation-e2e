@@ -22,6 +22,8 @@ export class HomePage {
     readonly notificationButton: Locator;
     readonly myProfileButton: Locator;
     readonly homePageNavButton: Locator;
+    readonly spinnerOverlay: Locator;
+
 
     constructor(page: Page) {
         this.page = page;
@@ -62,6 +64,8 @@ export class HomePage {
         this.notificationButton = page.locator('span', { hasText: 'notifications' });
         this.myProfileButton = page.locator('img[routerlink="/settings/details"]');
         this.homePageNavButton = page.locator('#bp-sb-itm-home');
+        this.spinnerOverlay = page.locator('.ngx-spinner-overlay');
+
 
 
     }
@@ -74,14 +78,69 @@ export class HomePage {
             '/home-v2'
         ];
 
+        for (const target of targetRoute) {
+            try {
+                await this.page.goto('/home', { waitUntil: 'domcontentloaded', timeout: 90000 });
 
+                await this.waitForSpinnerToClear(20000);
 
+                if (await this.waitForHomeSurface()) {
+                    return;
+                }
+            } catch (error) {
+                console.log(`Navigation failed for route ${'/home'}:`, error);
+            }
+        }
+
+        throw new Error(
+            `HomePage.goto: authentication surface did not render after retries. ${await this.getSurfaceDiagnostics()}`
+        );
 
     }
 
-    
+    async verifyCardData(): Promise<boolean> {
+        return this.messagesCard.isVisible().catch(() => false);
+        return this.totalWhatsAppMessagesCard.isVisible().catch(() => false);
+        return this.aiMessagesCard.isVisible().catch(() => false);
+        return this.leadsCard.isVisible().catch(() => false);
+    }
+
+    async verifyChatbotTablePresent(): Promise<boolean> {
+        return this.chatbotTable.isVisible().catch(() => false);
+        if ()
+    }
 
 
 
 
+    async waitForSpinnerToClear(
+        timeout = 15000
+    ): Promise<void> {
+        await this.spinnerOverlay
+            .waitFor({ state: 'hidden', timeout })
+            .catch(() => { });
+    }
+
+    private async waitForHomeSurface(): Promise<boolean> {
+        return this.messagesCard.isVisible().catch(() => false);
+    }
+
+    private async getSurfaceDiagnostics(): Promise<string> {
+        return this.page.evaluate(() => {
+            const bodyText =
+                document.body?.innerText?.replace(/\s+/g, ' ').trim() ?? '';
+
+            return JSON.stringify({
+                url: window.location.href,
+                readyState: document.readyState,
+                bodyText: bodyText.slice(0, 300),
+                bodyLength: document.body?.innerText?.length ?? 0
+            });
+        }).catch(error =>
+            `diagnostics unavailable: ${error instanceof Error ? error.message : String(error)
+            }`
+        );
+    }
 }
+
+
